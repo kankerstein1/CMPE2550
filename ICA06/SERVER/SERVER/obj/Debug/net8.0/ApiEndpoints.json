@@ -1,0 +1,116 @@
+[
+  {
+    "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_1",
+    "RelativePath": "",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_2",
+    "RelativePath": "get",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_3",
+    "RelativePath": "locations",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String[]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_4",
+    "RelativePath": "menu",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String[]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_6",
+    "RelativePath": "order",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "SERVER.Program\u002BInfo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_5",
+    "RelativePath": "prices",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Double[]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
