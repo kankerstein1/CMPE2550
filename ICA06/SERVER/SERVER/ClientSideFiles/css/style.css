@@ -72,7 +72,4 @@ form
 {
     grid-row: 6;
     grid-column: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

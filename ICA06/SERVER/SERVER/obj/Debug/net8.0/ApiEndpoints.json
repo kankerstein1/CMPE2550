@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__1_1",
+    "Method": "\u003CMain\u003Eb__2_1",
     "RelativePath": "",
     "HttpMethod": "GET",
     "IsController": false,
@@ -19,7 +19,7 @@
   },
   {
     "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__1_2",
+    "Method": "\u003CMain\u003Eb__2_2",
     "RelativePath": "get",
     "HttpMethod": "GET",
     "IsController": false,
@@ -37,7 +37,7 @@
   },
   {
     "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__1_3",
+    "Method": "\u003CMain\u003Eb__2_3",
     "RelativePath": "locations",
     "HttpMethod": "POST",
     "IsController": false,
@@ -55,7 +55,7 @@
   },
   {
     "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__1_4",
+    "Method": "\u003CMain\u003Eb__2_4",
     "RelativePath": "menu",
     "HttpMethod": "POST",
     "IsController": false,
@@ -73,7 +73,7 @@
   },
   {
     "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__1_6",
+    "Method": "\u003CMain\u003Eb__2_6",
     "RelativePath": "order",
     "HttpMethod": "POST",
     "IsController": false,
@@ -97,7 +97,7 @@
   },
   {
     "ContainingType": "SERVER.Program\u002B\u003C\u003Ec",
-    "Method": "\u003CMain\u003Eb__1_5",
+    "Method": "\u003CMain\u003Eb__2_5",
     "RelativePath": "prices",
     "HttpMethod": "POST",
     "IsController": false,
