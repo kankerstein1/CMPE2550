@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "ServerStuff.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__8_1",
+    "RelativePath": "",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ServerStuff.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__8_2",
+    "RelativePath": "game",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "response",
+        "Type": "ServerStuff.Program\u002BData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

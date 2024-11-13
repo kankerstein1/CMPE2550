@@ -1,0 +1,123 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: grid;
+    grid-template-rows: 1fr 8fr 1fr;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    grid-row: 1;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    grid-row: 2;
+    padding: 20px;
+    display: grid;
+    grid-template-rows: 5;
+}
+
+footer {
+    grid-row: 3;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Form Styles */
+form {
+    grid-row: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="text"] {
+    width: calc(50% - 10px);
+    padding: 10px;
+    margin: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Game Board Styles */
+.p1Board, .p2Board, .imageBoard {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#pull {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    grid-row: 5;
+}
+
+#pull:hover {
+    background-color: #555;
+}
+.p1Board
+{
+    grid-row: 2;
+    display: grid;
+    border: 2px solid black;
+    grid-template-columns: repeat(65, 22px);
+
+}
+.p2Board
+{
+    grid-row: 4;
+    display: grid;
+    border: 2px solid black;
+    grid-template-columns: repeat(65, 22px);
+
+}
+.imageBoard
+{
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(65, 22px);
+
+}
+td{
+    border: 2px solid grey;
+    
+}

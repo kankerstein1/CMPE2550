@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="tugofwar.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="tugofwar.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Tug of War</h1>
+    </header>
+    <main>
+        <div class ="row1">
+            <form method="POST" action="index.php">
+                <h3 id="status"></h3>
+                <br>
+                <input type="text" id="player1" name="p1" placeholder="Player one name here">
+                <input type="text" id="player2" name="p2" placeholder="Player two name here">
+                <br>
+                <button type="button" id="newGame" value="new"> New Game</button>
+                <button type ="button" id="quitGame" value="new"quit>Quit Game </button>
+            </form>
+        </div>
+        <div class="p1Board">
+
+        </div>
+        <div class="imageBoard">
+            
+        </div>
+        <div class="p2Board">
+            
+        </div>
+
+        <button type="button" id="pull">Pull</button>
+
+    </main>
+    <footer>
+        <h3>© Made by Kevin Ankerstein</h3>
+        <script>document.write("Last Modified On: " + document.lastModified)</script>
+    </footer>
+</body>
+</html>
