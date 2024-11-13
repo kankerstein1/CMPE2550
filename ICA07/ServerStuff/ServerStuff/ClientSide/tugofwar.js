@@ -66,7 +66,7 @@ $("#newGame").on("click", ()=>{
     {
         //player names are good time to make the game
         console.log("new game");
-
+        $("#newGame").prop("disabled", true);
         //data to be sent to server
     let data = {
         action: "NewGame",
@@ -101,14 +101,14 @@ $("#quitGame").on("click", ()=>{{
         player1: p1,
         player2: p2
     };
-
+    $("#newGame").prop("disabled", false);
     //making ajax call with data and success/error functions
     Ajax("http://localhost:5155/game","POST",data,"JSON",QuitFunc,errorFunc);
 }})
 
 //event handler for clicking pull
 $("#pull").on("click", ()=>{
-
+    $("#newGame").prop("disabled", true);
     //storing p1 and p2 names
     let p1 = $("#player1").val();
     let p2 = $("#player2").val();

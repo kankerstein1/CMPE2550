@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\rocke\\OneDrive\\Documents\\NAITWeb\\CMPE2550\\ICA\\ICA07\\ServerStuff\\",
+  "WorkspaceRootPath": "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ICA07\\ServerStuff\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFFFFBA9-4CD5-4123-AFF0-CE7953B3FC72}|ServerStuff\\ServerStuff.csproj|c:\\users\\rocke\\onedrive\\documents\\naitweb\\cmpe2550\\ica\\ica07\\serverstuff\\serverstuff\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AFFFFBA9-4CD5-4123-AFF0-CE7953B3FC72}|ServerStuff\\ServerStuff.csproj|c:\\users\\kankerstein1\\documents\\github\\cmpe2550\\ica07\\serverstuff\\serverstuff\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFFFFBA9-4CD5-4123-AFF0-CE7953B3FC72}|ServerStuff\\ServerStuff.csproj|solutionrelative:serverstuff\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\rocke\\OneDrive\\Documents\\NAITWeb\\CMPE2550\\ICA\\ICA07\\ServerStuff\\ServerStuff\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ICA07\\ServerStuff\\ServerStuff\\Program.cs",
               "RelativeDocumentMoniker": "ServerStuff\\Program.cs",
-              "ToolTip": "C:\\Users\\rocke\\OneDrive\\Documents\\NAITWeb\\CMPE2550\\ICA\\ICA07\\ServerStuff\\ServerStuff\\Program.cs",
+              "ToolTip": "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ICA07\\ServerStuff\\ServerStuff\\Program.cs",
               "RelativeToolTip": "ServerStuff\\Program.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAYwEgAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAYwEgAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-13T17:57:50.568Z",
               "EditorCaption": ""
