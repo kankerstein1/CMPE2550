@@ -132,12 +132,18 @@ namespace ServerStuff
             //run app
             app.Run();
         }
+        //function goal is to sanitize inputs for clean and safe data
+        //Params: string input: the string to santize
+        //Returns: a clean and santized string :)
         public static string CleanInputs(string input)
         {
+            //string to store cleaned input
             string clean;
 
-            //clean here
+            //trim and remove and special characters
             clean = Regex.Replace(input.Trim(), "<.*?|&;$>", string.Empty);
+
+            //return it
             return clean;
         }
     }
