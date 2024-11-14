@@ -1,0 +1,7 @@
+C:\Users\rocke\OneDrive\Documents\GitHub\CMPE2550\ICA07\ServerStuff\ServerStuff\obj\Release\net8.0\PubTmp\Out\ServerStuff.exe
+C:\Users\rocke\OneDrive\Documents\GitHub\CMPE2550\ICA07\ServerStuff\ServerStuff\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
+C:\Users\rocke\OneDrive\Documents\GitHub\CMPE2550\ICA07\ServerStuff\ServerStuff\obj\Release\net8.0\PubTmp\Out\appsettings.json
+C:\Users\rocke\OneDrive\Documents\GitHub\CMPE2550\ICA07\ServerStuff\ServerStuff\obj\Release\net8.0\PubTmp\Out\ServerStuff.dll
+C:\Users\rocke\OneDrive\Documents\GitHub\CMPE2550\ICA07\ServerStuff\ServerStuff\obj\Release\net8.0\PubTmp\Out\ServerStuff.deps.json
+C:\Users\rocke\OneDrive\Documents\GitHub\CMPE2550\ICA07\ServerStuff\ServerStuff\obj\Release\net8.0\PubTmp\Out\ServerStuff.runtimeconfig.json
+C:\Users\rocke\OneDrive\Documents\GitHub\CMPE2550\ICA07\ServerStuff\ServerStuff\obj\Release\net8.0\PubTmp\Out\ServerStuff.pdb
