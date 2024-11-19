@@ -1,0 +1,62 @@
+[
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__2_3",
+    "RelativePath": "",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec__DisplayClass2_0",
+    "Method": "\u003CMain\u003Eb__1",
+    "RelativePath": "retrieve",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec__DisplayClass2_0",
+    "Method": "\u003CMain\u003Eb__2",
+    "RelativePath": "retrieveClass",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "info",
+        "Type": "ICA08.Info",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

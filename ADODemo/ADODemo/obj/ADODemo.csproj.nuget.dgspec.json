@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj": {}
+    "C:\\Users\\rocke\\OneDrive\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj": {
+    "C:\\Users\\rocke\\OneDrive\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj",
+        "projectUniqueName": "C:\\Users\\rocke\\OneDrive\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj",
         "projectName": "ADODemo",
-        "projectPath": "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj",
-        "packagesPath": "C:\\Users\\kankerstein1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kankerstein1\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\obj\\",
+        "projectPath": "C:\\Users\\rocke\\OneDrive\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\ADODemo.csproj",
+        "packagesPath": "C:\\Users\\rocke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rocke\\OneDrive\\Documents\\GitHub\\CMPE2550\\ADODemo\\ADODemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\kankerstein1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rocke\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

@@ -1,0 +1,61 @@
+body{
+    background-color: rgb(15, 135, 255);
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 3;
+}
+header{
+    grid-column: 2;
+    grid-row: 1;
+    text-align: center;
+    background-color: aqua;
+    border: 1px solid white;
+}
+footer{
+    grid-column: 2;
+    grid-row: 3;
+    text-align: center;
+    background-color: aqua;
+    border: 1px solid white;
+}
+main{
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: 4;
+}
+.studentTable
+{
+    border-collapse: collapse;
+    width: 100%;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+}
+#studentRow
+{
+    grid-row: 2;
+    text-align: center;
+    color: white;
+}
+.classTable
+{
+    border-collapse: collapse;
+    width: 100%;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+}
+#classRow
+{
+    grid-row: 4;
+    text-align: center;
+    color: white;
+}
+.studentTable tr:nth-child(even), .classTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.studentTable tr:nth-child(odd), .classTable tr:nth-child(odd) {
+    background-color: #ffffff;
+}
