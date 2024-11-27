@@ -1,0 +1,60 @@
+[
+  {
+    "ContainingType": "ASPADODemo01.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__0_1",
+    "RelativePath": "",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ASPADODemo01.Program\u002B\u003C\u003Ec__DisplayClass0_0",
+    "Method": "\u003CMain\u003Eb__3",
+    "RelativePath": "DeleteEmployee/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ASPADODemo01.Program\u002B\u003C\u003Ec__DisplayClass0_0",
+    "Method": "\u003CMain\u003Eb__2",
+    "RelativePath": "RetrieveData",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
