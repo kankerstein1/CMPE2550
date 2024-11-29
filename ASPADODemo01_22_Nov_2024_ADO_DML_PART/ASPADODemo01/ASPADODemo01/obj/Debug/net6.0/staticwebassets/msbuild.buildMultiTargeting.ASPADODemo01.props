@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ASPADODemo01.props" />
+</Project>
