@@ -1,0 +1,128 @@
+[
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__3_3",
+    "RelativePath": "",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__3_5",
+    "RelativePath": "add",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addstudent",
+        "Type": "ICA08.Add",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__3_6",
+    "RelativePath": "delete",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "deleteStudent",
+        "Type": "ICA08.Delete",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__3_4",
+    "RelativePath": "getClasses",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__3_1",
+    "RelativePath": "retrieve",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__3_2",
+    "RelativePath": "retrieveClass",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "info",
+        "Type": "ICA08.Info",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

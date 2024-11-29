@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ICA09.props" />
+</Project>
