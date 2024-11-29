@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Connections.Features;
 
 namespace ICA08
 {
@@ -11,7 +12,7 @@ namespace ICA08
 
     record Delete(int studentId);
 
-    
+    record Update(int studentId, string firstName, string lastName, int schoolId);
 
     public class Program
     {
@@ -111,7 +112,7 @@ namespace ICA08
                     SqlConnection conn = new SqlConnection(connection);
                     conn.Open();
 
-                    Console.WriteLine(info.studentId);
+                    //Console.WriteLine(info.studentId);
                     //make a query string
                     string query = "select c.class_id, c.class_desc, c.days, c.start_date, c.instructor_id, i.first_name, i.last_name " +
                     "from Classes c " +
@@ -253,23 +254,33 @@ namespace ICA08
                     //execute query
                     SqlCommand command = new SqlCommand(query, conn);
 
-
+                    //get rows eeffected
                     int rowsAffected = command.ExecuteNonQuery();
+
+                    //close connection
+                    conn.Close();
+                    conn.Open();
+
+                    //value for rows affected
                     int rowsAffected1 = 0;  
+
+                    //iterate through collection
                     for (int i = 0; i < addstudent.classId.Length; i++)
                         {
+                        //get qquery string
                             string query2 = $"insert into class_to_student (student_id, class_id) values ((select student_id from Students where first_name = '{addstudent.firstName}' and last_name = '{addstudent.lastName}'), {addstudent.classId[i]})";
 
                             //execute query
-                            command = new SqlCommand(query, conn);
+                            command = new SqlCommand(query2, conn);
 
                         //run query
                          rowsAffected1 = command.ExecuteNonQuery();
                     }
                     
+                    //close it
                     conn.Close();
 
-
+                    //build data object and send it
                     var data = (object)new
                     {
                         studentRow = rowsAffected1,
@@ -284,38 +295,59 @@ namespace ICA08
                 return "";
             });
 
-            app.MapDelete("/delete", ([FromBody]Delete deleteStudent) =>
+            app.MapDelete("/delete/{id}", (int id) =>
             {
                 try
                 {
-                    Console.WriteLine(deleteStudent.studentId);
+                    Console.WriteLine(id);
                     //open connection
                     SqlConnection conn = new SqlConnection(connection);
                     conn.Open();
 
-                    string query1 = $"delete from class_to_student where student_id = {deleteStudent.studentId}";
-
-                    //make a query string
-                    string query2 = $"delete from Students where student_id = {deleteStudent.studentId}";
+                    //get query
+                    string query1 = $"delete from class_to_student where student_id = {id}";
 
                     //execute query
                     SqlCommand command = new SqlCommand(query1, conn);
 
-
+                    //get rowws effected
                     int rowsAffected = command.ExecuteNonQuery();
+
+                    //close connection
+                    conn.Close();
+                    conn.Open();
+
+                    //get qquery
+                    string query3 = $"delete from Results where student_id = {id}";
+
+                    //execute query
+                    command = new SqlCommand(query3, conn);
+
+                    //get rows effected
+                    int rowsAffected1 = command.ExecuteNonQuery();
+
+                    //close connectionn
+                    conn.Close();
+                    conn.Open();
+
+                    //make a query string
+                    string query2 = $"delete from Students where student_id = {id}";
 
                     //execute query
                     SqlCommand command2 = new SqlCommand(query2, conn);
 
+                    //get rows effected
+                    int rowsAffected3 = command2.ExecuteNonQuery();
 
-                    int rowsAffected1 = command.ExecuteNonQuery();
-
+                    //close connnection
                     conn.Close();
 
+                    //build data object and return it
                     var data = (object)new
                     {
-                        studentRow = rowsAffected1,
-                        classRow = rowsAffected
+                        studentRow = rowsAffected,
+                        classRow = rowsAffected3,
+                        resultsRow = rowsAffected1
                     };
                     return data;
                 }
@@ -326,18 +358,39 @@ namespace ICA08
                 return "";
             });
 
-            //app.MapPut("/edit", (Info editStudent) =>
-            //{
-            //    try
-            //    {
+            app.MapPut("/edit", (Update update) =>
+            {
+                try
+                {
+                    //open connection
+                    SqlConnection conn = new SqlConnection(connection);
+                    conn.Open();
 
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine(ex.Message);
-            //    }
-            //    return "";
-            //});
+                    //make query
+                    string query = $"Update Students set first_name = '{update.firstName}', last_name = '{update.lastName}', school_id = {update.schoolId} where student_id = {update.studentId}";
+
+                    //execute query
+                    SqlCommand command = new SqlCommand(query, conn);
+
+                    ///gget rows effected
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    ///close conenction
+                    conn.Close();
+
+                    ///build data object
+                    var data = (object)new
+                    {
+                        studentRow = rowsAffected
+                    };
+                    return data;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                return "";
+            });
             //run app
             app.Run();
         }

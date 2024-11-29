@@ -44,14 +44,38 @@
   {
     "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
     "Method": "\u003CMain\u003Eb__3_6",
-    "RelativePath": "delete",
+    "RelativePath": "delete/{id}",
     "HttpMethod": "DELETE",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "deleteStudent",
-        "Type": "ICA08.Delete",
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA08.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__3_7",
+    "RelativePath": "edit",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "update",
+        "Type": "ICA08.Update",
         "IsRequired": true
       }
     ],

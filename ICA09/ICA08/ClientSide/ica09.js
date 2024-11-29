@@ -42,7 +42,7 @@ function successFunc(returnData, status)
     for (let i = 0; i < returnData.studentList.length; i++)
     {
         //build table row with data returned
-        table += `<tr><td><button type='button' id='${returnData.studentList[i].studentId}'>Get Class Info</button></td>`;
+        table += `<tr><td><button type='button' name='retrieve' id='${returnData.studentList[i].studentId}'>Get Class Info</button></td>`;
         table += `<td>${returnData.studentList[i].studentId}</td>`;
         table += `<td>${returnData.studentList[i].firstName}</td>`;
         table += `<td>${returnData.studentList[i].lastName}</td>`;
@@ -59,7 +59,7 @@ function successFunc(returnData, status)
     $("#studentRow").html(`Retrieved: ${returnData.studentList.length} student records`);
 
     //add event listener to the button
-    $(".studentTable").on("click", "button", function(){
+    $(".studentTable").on("click", "[name=retrieve]", function(){
 
         //get the student id from the button
         let studentId = $(this).attr("id");
@@ -76,13 +76,17 @@ function successFunc(returnData, status)
             console.log(studentId);
     
             //make ajax call
-            Ajax("http://localhost:5217/delete","DELETE",{studentId:studentId},"JSON",successDelete,errorFunc);
+            Ajax(`http://localhost:5217/delete/${studentId}`,"DELETE",{},"JSON",successDelete,errorFunc);
     });
     $(".studentTable").on("click", "[name=edit]", function(){
         
         eButton = this;
 
         let tablerow = $(eButton).closest('tr').children('td');
+
+        $(".studentTable").off("click", "[name=delete]");
+        $(".studentTable").off("click", "[name=edit]");
+
 
         let editfName = tablerow[2].innerHTML;
         tablerow[2].innerHTML = "<input type='text' value=''>";
@@ -97,11 +101,18 @@ function successFunc(returnData, status)
         tablerow[4].innerHTML = "<input type='text' value=''>";
         tablerow[4].children[0].value = editSchoolId;
 
-        //get the student id from the button
-        let studentId = $(this).attr("id");
-        let fName = $(this).parent().prev().prev().prev().prev().text();
-        let lName = $(this).parent().prev().prev().prev().text();
-        let schoolId = $(this).parent().prev().prev().text();
+        let editButtons = table[5].innerHTML;
+        tablerow[5].innerHTML = "<button type='button' id='update'>Update</button><button type='button' id='cancel'>Cancel</button>";
+
+        
+
+        $("#update").on("click", function(){
+            //get the student id from the button
+        let studentId = $(this).parent().prev().prev().prev().prev().text();
+        let fName = $(this).parent().prev().prev().prev().children().val();
+        let lName = $(this).parent().prev().prev().children().val();
+        let schoolId = $(this).parent().prev().children().val();
+
         console.log(studentId);
 
         let data = {
@@ -110,8 +121,15 @@ function successFunc(returnData, status)
             lastName:lName,
             schoolId:schoolId
         };
+
         //make ajax call
-        //Ajax("http://localhost:5217/edit","PUT",data,"JSON",successFunc,errorFunc);
+        Ajax("http://localhost:5217/edit","PUT",data,"JSON",UpdateFunc,errorFunc);
+        });
+       $("#cancel").on("click", function(){
+        Ajax("http://localhost:5217/retrieve","GET",{},"JSON",successFunc,errorFunc);
+       });
+        
+        
 });
 }
 
@@ -197,5 +215,11 @@ function successDelete(data,status)
 {
     console.log(data);
     alert(`Removed ${data.studentRow} from Students and ${data.classRow} from Class2Student`);
+    Ajax("http://localhost:5217/retrieve","GET",{},"JSON",successFunc,errorFunc);
+}
+function UpdateFunc(data,status)
+{
+    console.log(data);
+    alert(`Updated ${data.studentRow} from Students`);
     Ajax("http://localhost:5217/retrieve","GET",{},"JSON",successFunc,errorFunc);
 }
