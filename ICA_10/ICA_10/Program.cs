@@ -1,4 +1,6 @@
 using ICA_10.Models;
+using System.Text.RegularExpressions;
+
 
 namespace ICA_10
 {
@@ -58,6 +60,17 @@ namespace ICA_10
                 });
 
             app.Run();
+        }
+        public static string CleanInputs(string input)
+        {
+            //string to store cleaned input
+            string clean;
+
+            //trim and remove and special characters
+            clean = Regex.Replace(input.Trim(), "<.*?|&;$>", string.Empty);
+
+            //return it
+            return clean;
         }
     }
 }
