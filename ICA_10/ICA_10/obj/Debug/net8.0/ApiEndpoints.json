@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Object",
+        "Type": "System.Collections.Generic.List\u00601[[\u003C\u003Ef__AnonymousType2\u00602[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ICA_10, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "application/json"
         ],
@@ -20,14 +20,25 @@
   {
     "ContainingType": "ICA_10.Program\u002B\u003C\u003Ec",
     "Method": "\u003CMain\u003Eb__0_2",
-    "RelativePath": "retrieve",
+    "RelativePath": "customer/{locationId}/{customerId}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "locationId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "customerId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[\u003C\u003Ef__AnonymousType2\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], ICA_10, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Object",
         "MediaTypes": [
           "application/json"
         ],

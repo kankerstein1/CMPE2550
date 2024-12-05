@@ -22,7 +22,7 @@ footer{
 main{
     grid-row-start: 2;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 4;
 }
 #customerRow{
     grid-row-start: 1;
@@ -34,8 +34,30 @@ main{
 }
 .orderTable
 {
+    grid-row-start: 4;
+    display: flex;
+    justify-content: center;
+}
+.orderResponse
+{
+    display: flex;
+    justify-content: center;
+    grid-row-start: 3;
+}
+table
+{
     border-collapse: collapse;
     width: 100%;
-    border: 3px solid dark red;
-    border-radius: 100%;
+    border: 2px solid black;
+    }
+
+    
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+table,td
+{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
 }
