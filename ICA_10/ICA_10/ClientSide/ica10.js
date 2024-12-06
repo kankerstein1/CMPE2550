@@ -32,6 +32,7 @@ function success(data,status)
 
     //create a dropdown for the locations
     let locations = "<select id='location'>";
+    locations += `<option value='default'>Select A Location</option>`;
     
         for (let i = 0; i < data.length; i++)
         {
