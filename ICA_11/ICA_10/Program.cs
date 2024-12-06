@@ -1,14 +1,15 @@
 using ICA_10.Models;
-using System.Security.Cryptography;
+using System;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace ICA_10
 {
     record Info(string locationId, string customerId);
-    
-    record Add(string customerId, string itemOrdered,string quantity, string paymentMethod,string location);
-    
+
+    record Add(string customerId, string itemOrdered, string quantity, string paymentMethod, string location);
+    record UpdateOrder(string orderId,string customerId, string itemOrdered, string quantity, string paymentMethod, string location);
     public class Program
 
     {
@@ -41,7 +42,7 @@ namespace ICA_10
                                     l.LocationName,
                                     l.Locationid
                                 };
-                
+
                 return locations.ToList();
             });
 
@@ -117,9 +118,9 @@ namespace ICA_10
                             response = $"{e.Message}"
                         };
                         return responseData;
-                        
+
                     }
-                    
+
                 });
 
             app.MapGet("/items", () =>
@@ -143,11 +144,11 @@ namespace ICA_10
                     };
                     return responseData;
                 }
-               
+
 
             });
 
-            app.MapDelete("/delete/{orderId}/{locationsId}", (string orderId,string locationsId) =>
+            app.MapDelete("/delete/{orderId}/{locationsId}", (string orderId, string locationsId) =>
             {
                 try
                 {
@@ -155,7 +156,7 @@ namespace ICA_10
                     string cleanLocation = CleanInputs(locationsId);
                     bool goodparse = int.TryParse(cleanId, out int validId);
                     bool goodLocation = int.TryParse(cleanLocation, out int validLocation);
-                    if(!goodparse || !goodLocation)
+                    if (!goodparse || !goodLocation)
                     {
                         var responseData = (object)new
                         {
@@ -169,12 +170,12 @@ namespace ICA_10
                         {
                             Console.WriteLine(validId);
                             Console.WriteLine(validLocation);
-                                if (db.Orders.Find(validLocation,validId) is Order o)
-                                {
-                                    db.Orders.Remove(o);
-                                    db.SaveChanges();
+                            if (db.Orders.Find(validLocation, validId) is Order o)
+                            {
+                                db.Orders.Remove(o);
+                                db.SaveChanges();
 
-                                    var tableData = from c in db.Customers
+                                var tableData = from c in db.Customers
                                                 join or in db.Orders on c.Cid equals or.Cid
                                                 join i in db.Items on or.Itemid equals i.Itemid
                                                 where c.Cid == _customerId && or.Locationid == validLocation
@@ -191,10 +192,10 @@ namespace ICA_10
                                 return (object)new
                                 {
                                     response = "Order Succesfully Deleted",
-                                        table = tableData.ToList()
-                                    };
-                                }
-                            
+                                    table = tableData.ToList()
+                                };
+                            }
+
                             else
                             {
                                 return (object)new
@@ -223,22 +224,121 @@ namespace ICA_10
                 try
                 {
                     int cleanCustomerId = int.Parse(CleanInputs(add.customerId));
-                    string cleanitem = CleanInputs(add.itemOrdered);
+                    int cleanItem = int.Parse(CleanInputs(add.itemOrdered));
                     int cleanQuantity = int.Parse(CleanInputs(add.quantity));
                     string cleanPayment = CleanInputs(add.paymentMethod);
                     int cleanLocation = int.Parse(CleanInputs(add.location));
+                    var db = new Kankerstein1RestaurantDbContext();
+
+
+                    if (db.Customers.Find(cleanCustomerId) is Customer C)
+                    {
+                        Order o = new Order();
+                        o.Cid = cleanCustomerId;
+                        o.Itemid = cleanItem;
+                        o.ItemCount = cleanQuantity;
+                        o.PaymentMethod = cleanPayment;
+                        o.Locationid = cleanLocation;
+
+                        db.Add(o);
+                        db.SaveChanges();
+
+                        Random rnd = new Random();
+
+                        return (object)new
+                        {
+                            response = $"Order Received. Your Order will be ready in {rnd.Next(5, 31)} minutes. You can edit it if you want"
+                        };
+                    }
+                    else
+                    {
+                        return (object)new { response = "Customer Not Found" };
+                    }
                 }
                 catch (Exception e)
                 {
                     return (object)new
                     {
-                        response = "Validation of inputs failed make sure all inputs are valid"
+                        response = $"{e.Message}"
                     };
                 }
-                finally
+
+            });
+
+            app.MapPost("/updateForm", (Add update) =>
+            {
+                try
                 {
+                    int cleanCustomerId = int.Parse(CleanInputs(update.customerId));
+                    int cleanItem = int.Parse(CleanInputs(update.itemOrdered));
+                    int cleanQuantity = int.Parse(CleanInputs(update.quantity));
+                    string cleanPayment = CleanInputs(update.paymentMethod);
+                    int cleanLocation = int.Parse(CleanInputs(update.location));
+
+                    var db = new Kankerstein1RestaurantDbContext();
+
+                    var orders = from o in db.Orders
+                                 select o.OrderId;
+                    
+                    string form = "<Form>";
+                    form += "<label for='customerId'>Order Id:</label>";
+                    form += $"<input type='text' id='orderId' name='orderId' value='{orders.ToList().Last()}' disabled>";
+                    form += "<label for='customerId'>Customer Id:</label>";
+                    form += $"<input type='text' id='customerId' name='customerId' value='{cleanCustomerId}'disabled>";
+                    form += "<label for='itemOrdered'>Item Ordered:</label>";
+                    form += "<select id='itemOrdered' name='itemOrdered'>";
+                    form += "<option value='default'>Select An Item</option>";
+
+                    var items = from i in db.Items
+                                select i;
+                    foreach (var i in items.ToList())
+                    {
+                        form += $"<option value='{i.Itemid}'>{i.ItemName}</option>";
+                    }
+
+                    form += "</select>";
+                    form += "<label for='quantity'>How Many:</label>";
+                    form += "<input type='text' id='quantity' name='quantity' placeholder='0'>";
+                    form += "<label for='paymentMethod'>Payment Method:</label>";
+                    form += "<select id='paymentMethod' name='paymentMethod'>";
+                    form += "<option value='default'>Select A Payment Method</option>";
+                    form += "<option value='Cash'>Cash</option>";
+                    form += "<option value='Credit'>Credit</option>";
+                    form += "<option value='Debit'>Debit</option>";
+                    form += "</select>";
+                    form += "<label for='location'>Location:</label>";
+                    form += "<select id='locationAdd' name='location' disabled>";
+
+                    var locations = from l in db.Locations
+                                    where l.Locationid == cleanLocation
+                                    select l;
+                    foreach (var l in locations.ToList())
+                    {
+                        form += $"<option value='{l.Locationid}'>{l.LocationName}</option>";
+                    }
+
+                    form += "</select>";
+                    form += "<button type='button' id='update'>Update Order</button>";
+                    form += "</form>";
+
+                    return (object)new
+                    {
+                        response = "update",
+                        updateForm = form
+                    };
 
                 }
+                catch (Exception e)
+                {
+                    return (object)new
+                    {
+                        response = $"{e.Message}"
+                    };
+                }
+            });
+
+            app.MapPut("/updateForm", () =>
+            {
 
             });
 

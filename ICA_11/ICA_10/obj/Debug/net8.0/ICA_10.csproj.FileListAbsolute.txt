@@ -144,3 +144,7 @@ C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\obj\Debug\net8.0\r
 C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\obj\Debug\net8.0\ICA_10.pdb
 C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\obj\Debug\net8.0\ICA_10.genruntimeconfig.cache
 C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\obj\Debug\net8.0\ref\ICA_10.dll
+C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\bin\Debug\net8.0\ICA_10.staticwebassets.endpoints.json
+C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\obj\Debug\net8.0\staticwebassets\msbuild.ICA_10.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\kankerstein1\Documents\GitHub\CMPE2550\ICA_11\ICA_10\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

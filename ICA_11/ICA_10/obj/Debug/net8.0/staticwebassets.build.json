@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "o2IWUQ28HY/uboJCmipJdB8lBMyRjTDmsLbKAgs8Nw0=",
+  "Hash": "8Yll/M9hOpj7Hj3IX0G+7sOBX8bWGgfI1GyJpPBrnIU=",
   "Source": "ICA_10",
   "BasePath": "_content/ICA_10",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

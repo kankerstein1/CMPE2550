@@ -19,6 +19,30 @@
   },
   {
     "ContainingType": "ICA_10.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_5",
+    "RelativePath": "add",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "add",
+        "Type": "ICA_10.Add",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA_10.Program\u002B\u003C\u003Ec",
     "Method": "\u003CMain\u003Eb__1_2",
     "RelativePath": "customer/{locationId}/{customerId}",
     "HttpMethod": "GET",
@@ -83,6 +107,30 @@
     "IsController": false,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICA_10.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_6",
+    "RelativePath": "updateForm",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "update",
+        "Type": "ICA_10.Add",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Object",

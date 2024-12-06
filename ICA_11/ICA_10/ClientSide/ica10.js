@@ -1,4 +1,5 @@
 let locationsId = 0;
+let _data;
 $(()=>{
 //start of onload
 Ajax("http://localhost:5033/","GET",{},"JSON",success,errorFunc);
@@ -34,19 +35,22 @@ function success(data,status)
     console.log(data);
 
     //create a dropdown for the locations
-    let locations = "<select id='location'>";
-    locations += `<option value='default'>Select A Location</option>`;
+    locations = "";
+    let places = "<select id='location'>";
+    places += `<option value='default'>Select A Location</option>`;
     
         for (let i = 0; i < data.length; i++)
         {
             locations += `<option value='${data[i].locationid}'>${data[i].locationName}</option>`;
         }
+    places += locations;
+    places += "</select>";
     
-    locations += "</select>";
     
+
     locationsArray = locations;
     //append the dropdown to the locationRow
-    $("#locationRow").html(locations);
+    $("#locationRow").html(places);
 
     //get the items from the server
     Ajax("http://localhost:5033/items","GET",{},"JSON",function(data,status){
@@ -76,6 +80,7 @@ function success(data,status)
         add += "<option value='Debit'>Debit</option>";
         add += "</select>";
         add += "<label for='location'>Location:</label>";
+        add += "<select id='locationAdd' name='location'>";
         add += locationsArray;
 
         add += "</select>";
@@ -91,7 +96,8 @@ function success(data,status)
 
             let quantity = $("#quantity").val();
             let paymentMethod = $("#paymentMethod").val();
-            let location = $("#location").val();
+            let location = $("#locationAdd").val();
+            
 
             console.log(customerId);
             console.log(itemOrdered);
@@ -104,7 +110,7 @@ function success(data,status)
                 alert("Please fill out all fields");
                 return;
             }
-            if(customerId < 0 || itemOrdered < 0 || quantity < 0)
+            if(customerId < 0 || itemOrdered < 0 || quantity < 1)
             {
                 alert("Please enter a valid number");
                 return;
@@ -116,7 +122,8 @@ function success(data,status)
                 "paymentMethod": paymentMethod,
                 "location": location
             }
-            Ajax("http://localhost:5033/add","POST",data,"JSON",successAdd,error);
+            _data = data;
+            Ajax("http://localhost:5033/add","POST",data,"JSON",successAdd,errorFunc);
 
         });
     },errorFunc);
@@ -206,5 +213,47 @@ function deleteSuccess(data,status)
 }
 function successAdd(data,status)
 {
+    $(".addResponse").html(data.response);
+    //make ajax to build new form in back end
+    Ajax("http://localhost:5033/updateForm","POST",_data,"JSON",updateForm,errorFunc);
+}
+
+function updateForm(data,status)
+{
     console.log(data);
+    $(".addOrder").html(data.updateForm);
+    $("#update").on("click", function(){
+        let orderId = $("#orderId").val();
+        let customerId = $("#customerId").val();
+        let itemOrdered = $("#itemOrdered").val();
+        let quantity = $("#quantity").val();
+        let paymentMethod = $("#paymentMethod").val();
+        let location = $("#location").val();
+
+        if(itemOrdered == "" || quantity == "" || paymentMethod == "")
+        {
+            alert("Please fill out all fields");
+            return;
+        }
+        if(quantity < 1)
+        {
+            alert("Please enter a valid number");
+            return;
+        }
+        let data = {
+            "orderId": orderId,
+            "customerId": customerId,
+            "itemOrdered": itemOrdered,
+            "quantity": quantity,
+            "paymentMethod": paymentMethod,
+            "location": location
+        }
+        Ajax("http://localhost:5033/updateOrder","PUT",data,"JSON",updateOrderSuccess,errorFunc);
+    });
+
+    function updateOrderSuccess(data,status)
+    {
+        $(".addResponse").html(data.response);
+        $("#update").prop(disabled, true);
+    }
 }
