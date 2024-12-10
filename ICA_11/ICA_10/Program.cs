@@ -125,10 +125,13 @@ namespace ICA_10
 
             app.MapGet("/items", () =>
             {
+
                 try
                 {
+                    //new db context
                     var db = new Kankerstein1RestaurantDbContext();
 
+                    //get list of items from Items table
                     var items = from i in db.Items
                                 select i;
                     return items.ToList();
@@ -152,10 +155,15 @@ namespace ICA_10
             {
                 try
                 {
+                    //clean inputs
                     string cleanId = CleanInputs(orderId);
                     string cleanLocation = CleanInputs(locationsId);
+
+                    //check for valid ints
                     bool goodparse = int.TryParse(cleanId, out int validId);
                     bool goodLocation = int.TryParse(cleanLocation, out int validLocation);
+
+                    //send error message if invalid
                     if (!goodparse || !goodLocation)
                     {
                         var responseData = (object)new
@@ -166,15 +174,22 @@ namespace ICA_10
                     }
                     else
                     {
+                        //use db context
                         using (var db = new Kankerstein1RestaurantDbContext())
                         {
                             Console.WriteLine(validId);
                             Console.WriteLine(validLocation);
+                            //check for a valid order with the location and id
                             if (db.Orders.Find(validLocation, validId) is Order o)
                             {
+                                //remove the order
                                 db.Orders.Remove(o);
+
+                                //save it
                                 db.SaveChanges();
 
+
+                                //populate updated table data
                                 var tableData = from c in db.Customers
                                                 join or in db.Orders on c.Cid equals or.Cid
                                                 join i in db.Items on or.Itemid equals i.Itemid
@@ -189,6 +204,7 @@ namespace ICA_10
                                                     or.ItemCount
                                                 };
 
+                                //return new table
                                 return (object)new
                                 {
                                     response = "Order Succesfully Deleted",
@@ -223,14 +239,17 @@ namespace ICA_10
             {
                 try
                 {
+                    //santize inputs
                     int cleanCustomerId = int.Parse(CleanInputs(add.customerId));
                     int cleanItem = int.Parse(CleanInputs(add.itemOrdered));
                     int cleanQuantity = int.Parse(CleanInputs(add.quantity));
                     string cleanPayment = CleanInputs(add.paymentMethod);
                     int cleanLocation = int.Parse(CleanInputs(add.location));
+
+                    //new db context
                     var db = new Kankerstein1RestaurantDbContext();
 
-
+                    //if we find a customer populate a new order
                     if (db.Customers.Find(cleanCustomerId) is Customer C)
                     {
                         Order o = new Order();
@@ -240,11 +259,16 @@ namespace ICA_10
                         o.PaymentMethod = cleanPayment;
                         o.Locationid = cleanLocation;
 
+                        //add to db
                         db.Add(o);
+
+                        //save it
                         db.SaveChanges();
 
+                        //new random 
                         Random rnd = new Random();
 
+                        //return response with random time to simulate order time
                         return (object)new
                         {
                             response = $"Order Received. Your Order will be ready in {rnd.Next(5, 31)} minutes. You can edit it if you want"
@@ -269,26 +293,34 @@ namespace ICA_10
             {
                 try
                 {
+                    //santize data
                     int cleanCustomerId = int.Parse(CleanInputs(update.customerId));
                     int cleanItem = int.Parse(CleanInputs(update.itemOrdered));
                     int cleanQuantity = int.Parse(CleanInputs(update.quantity));
                     string cleanPayment = CleanInputs(update.paymentMethod);
                     int cleanLocation = int.Parse(CleanInputs(update.location));
 
+                    //new db context
                     var db = new Kankerstein1RestaurantDbContext();
 
+                    //get list of order id
                     var orders = from o in db.Orders
                                  select o.OrderId;
-                    
+                    var orderList = orders.ToList();
+
+                    //max value ie the latest order id in the order table which is the order we just added
+                    Console.WriteLine(orderList.Max());
+                    //populate form with the order
                     string form = "<Form>";
                     form += "<label for='customerId'>Order Id:</label>";
-                    form += $"<input type='text' id='orderId' name='orderId' value='{orders.ToList().Last()}' disabled>";
+                    form += $"<input type='text' id='orderId' name='orderId' value='{orderList.Max()}' disabled>";
                     form += "<label for='customerId'>Customer Id:</label>";
                     form += $"<input type='text' id='customerId' name='customerId' value='{cleanCustomerId}'disabled>";
                     form += "<label for='itemOrdered'>Item Ordered:</label>";
                     form += "<select id='itemOrdered' name='itemOrdered'>";
                     form += "<option value='default'>Select An Item</option>";
 
+                    //build select of items with the items table
                     var items = from i in db.Items
                                 select i;
                     foreach (var i in items.ToList())
@@ -309,6 +341,7 @@ namespace ICA_10
                     form += "<label for='location'>Location:</label>";
                     form += "<select id='locationAdd' name='location' disabled>";
 
+                    //build a list of locations with the location id
                     var locations = from l in db.Locations
                                     where l.Locationid == cleanLocation
                                     select l;
@@ -321,6 +354,7 @@ namespace ICA_10
                     form += "<button type='button' id='update'>Update Order</button>";
                     form += "</form>";
 
+                    //send new form back
                     return (object)new
                     {
                         response = "update",
@@ -337,9 +371,57 @@ namespace ICA_10
                 }
             });
 
-            app.MapPut("/updateForm", () =>
+            app.MapPut("/updateForm", (UpdateOrder up) =>
             {
+                try
+                {
+                    //santize data
+                    int cleanOrder = int.Parse(CleanInputs(up.orderId));
+                    int cleanCustomer = int.Parse(CleanInputs(up.customerId));
+                    int cleanItem = int.Parse(CleanInputs(up.itemOrdered));
+                    int cleanQuantity = int.Parse(CleanInputs(up.quantity));
+                    string cleanPayment = CleanInputs(up.paymentMethod);
+                    int cleanLocation = int.Parse(CleanInputs(up.location));
 
+                    //new db context
+                    var db = new Kankerstein1RestaurantDbContext();
+
+                    //check for valid order and unbox
+                    if(db.Orders.Find(cleanLocation,cleanOrder) is Order o)
+                    {
+                        //populate Order object with updated data
+                        o.Itemid = cleanItem;
+                        o.ItemCount = cleanQuantity;
+                        o.PaymentMethod = cleanPayment;
+                        
+                        Console.WriteLine(cleanItem);
+                        Console.WriteLine(cleanQuantity);
+                        Console.WriteLine(cleanPayment);
+
+                        //update db and save changes
+                        db.Update(o);
+                        db.SaveChanges();
+
+                        return (object)new
+                        {
+                            response = "Order Updated. Now you are unable to make any changes"
+                        };
+                    }
+                    else
+                    {
+                        return (object)new
+                        {
+                            response = $"Order Not Found"
+                        };
+                    }
+                }
+                catch (Exception e)
+                {
+                    return (object)new
+                    {
+                        response = $"{e.Message}"
+                    };
+                }
             });
 
             app.Run();

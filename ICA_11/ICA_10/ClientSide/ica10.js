@@ -55,6 +55,8 @@ function success(data,status)
     //get the items from the server
     Ajax("http://localhost:5033/items","GET",{},"JSON",function(data,status){
         console.log(data);
+
+        //build the form for the order
         let add = "<form>";
         add += "<h2>Place An Order</h2>";
         add += "<label for='customerId'>Customer Id:</label>";
@@ -63,6 +65,7 @@ function success(data,status)
         add += "<select id='itemOrdered' name='itemOrdered'>";
         add += "<option value='default'>Select An Item</option>";
 
+        //loop through the items and add them to the dropdown
         for(let i = 0; i < data.length; i++)
         {
             console.log(data[i].itemName);
@@ -81,40 +84,52 @@ function success(data,status)
         add += "</select>";
         add += "<label for='location'>Location:</label>";
         add += "<select id='locationAdd' name='location'>";
+
+        //loop through the locations and add them to the dropdown
         add += locationsArray;
 
         add += "</select>";
         add += "<button type='button' id='submit'>Place Order</button>";
         add += "</form>";
 
+        //append the form to the addOrder div
         $(".addOrder").html(add);
 
+        //event handler for when the submit button is clicked
         $("#submit").on("click", function(){
             console.log("Submit Clicked");
+
+            //get the values from the form
             let customerId = $("#customerId").val();
             let itemOrdered = $("#itemOrdered").val();
-
             let quantity = $("#quantity").val();
             let paymentMethod = $("#paymentMethod").val();
             let location = $("#locationAdd").val();
             
-
             console.log(customerId);
             console.log(itemOrdered);
             console.log(quantity);
             console.log(paymentMethod);
             console.log(location);
 
+            //if any of the fields are empty, alert the user
             if(customerId == "" || itemOrdered == "" || quantity == "" || paymentMethod == "" || location == "")
             {
                 alert("Please fill out all fields");
                 return;
             }
+            //if the quantity is less than 1, alert the user
             if(customerId < 0 || itemOrdered < 0 || quantity < 1)
             {
                 alert("Please enter a valid number");
                 return;
             }
+            if(location == "default" || paymentMethod == "default" || itemOrdered == "default")
+                {
+                    alert("Please select a location, payment method, and item");
+                    return;
+                } 
+            //send the data to the server
             let data = {
                 "customerId": customerId,
                 "itemOrdered": itemOrdered,
@@ -122,6 +137,7 @@ function success(data,status)
                 "paymentMethod": paymentMethod,
                 "location": location
             }
+            //store the data in a global variable
             _data = data;
             Ajax("http://localhost:5033/add","POST",data,"JSON",successAdd,errorFunc);
 
@@ -182,19 +198,29 @@ function successFunc(data,status)
     //append the table to the orderTable
     $(".orderTable").append(table);
 
+    //event handler for when the delete button is clicked
     $("[name=delete]").on("click", function(){
+
+        //get the order id
         let orderId = $(this).attr("id");
         console.log(orderId);  
         console.log(locationsId);
+
+        //send the data to the server
         Ajax(`http://localhost:5033/delete/${orderId}/${locationsId}`,"DELETE",data,"JSON",deleteSuccess,errorFunc);
     });
     
 
 }
+
+//function for success delete
 function deleteSuccess(data,status)
 {
+    //clear the order table
     $(".orderTable").html("");
     console.log(data);
+
+    //display the order response
     $(".orderResponse").html(data.response);
     //display the order table
     let table = "<table><tr><th>Order ID</th><th>Order Date</th><th>Payment Method</th><th>Item Name</th><th>Item Price</th><th>Item</th><th>Delete Order</th></tr>";
@@ -209,51 +235,92 @@ function deleteSuccess(data,status)
         table += `<td><button type=button id='${data.table[i].orderId}' name='delete'>Delete</button></td></tr>`;
     }
     table += "</table>";
+
+    //append the table to the orderTable
     $(".orderTable").append(table);
+
+    // Re-attach the event handler for the delete button
+    $("[name=delete]").on("click", function(){
+
+        //get the order id
+        let orderId = $(this).attr("id");
+        console.log(orderId);  
+        console.log(locationsId);
+
+        //send the data to the server
+        Ajax(`http://localhost:5033/delete/${orderId}/${locationsId}`,"DELETE",data,"JSON",deleteSuccess,errorFunc);
+    });
 }
 function successAdd(data,status)
 {
+    //display the response
     $(".addResponse").html(data.response);
-    //make ajax to build new form in back end
-    Ajax("http://localhost:5033/updateForm","POST",_data,"JSON",updateForm,errorFunc);
+
+    if(data.response == "Customer Not Found")
+        {
+            return;
+        }
+    else
+        {
+            //make ajax to build new form in back end
+            Ajax("http://localhost:5033/updateForm","POST",_data,"JSON",updateForm,errorFunc);
+        }
+        
 }
 
 function updateForm(data,status)
 {
-    console.log(data);
-    $(".addOrder").html(data.updateForm);
-    $("#update").on("click", function(){
-        let orderId = $("#orderId").val();
-        let customerId = $("#customerId").val();
-        let itemOrdered = $("#itemOrdered").val();
-        let quantity = $("#quantity").val();
-        let paymentMethod = $("#paymentMethod").val();
-        let location = $("#location").val();
-
-        if(itemOrdered == "" || quantity == "" || paymentMethod == "")
+    console.log(data.response);
+    //display the form
+    if(data.response == "Customer Not Found")
         {
-            alert("Please fill out all fields");
             return;
         }
-        if(quantity < 1)
-        {
-            alert("Please enter a valid number");
-            return;
-        }
-        let data = {
-            "orderId": orderId,
-            "customerId": customerId,
-            "itemOrdered": itemOrdered,
-            "quantity": quantity,
-            "paymentMethod": paymentMethod,
-            "location": location
-        }
-        Ajax("http://localhost:5033/updateOrder","PUT",data,"JSON",updateOrderSuccess,errorFunc);
-    });
+    else
+    {
+        $(".addOrder").html(data.updateForm);
+        $("#update").on("click", function(){
 
+            //get the values from the form
+            let orderId = $("#orderId").val();
+            let customerId = $("#customerId").val();
+            let itemOrdered = $("#itemOrdered").val();
+            let quantity = $("#quantity").val();
+            let paymentMethod = $("#paymentMethod").val();
+            let location = $("#location").val();
+
+            //if any of the fields are empty, alert the user
+            if(itemOrdered == "" || quantity == "" || paymentMethod == "")
+            {
+                alert("Please fill out all fields");
+                return;
+            }
+            //if the quantity is less than
+            if(quantity < 1)
+            {
+                alert("Please enter a valid number");
+                return;
+            }
+            //send the data to the server
+            let data = {
+                "orderId": orderId,
+                "customerId": customerId,
+                "itemOrdered": itemOrdered,
+                "quantity": quantity,
+                "paymentMethod": paymentMethod,
+                "location": location
+            }
+            Ajax("http://localhost:5033/updateForm","PUT",data,"JSON",updateOrderSuccess,errorFunc);
+        });
+    }
+    
+    //event handler for successful update
     function updateOrderSuccess(data,status)
     {
+        //send response to user
         $(".addResponse").html(data.response);
-        $("#update").prop(disabled, true);
+
+        //disable button
+        $("#update").prop("disabled", true);
     }
 }

@@ -140,5 +140,29 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ICA_10.Program\u002B\u003C\u003Ec",
+    "Method": "\u003CMain\u003Eb__1_7",
+    "RelativePath": "updateForm",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "up",
+        "Type": "ICA_10.UpdateOrder",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
